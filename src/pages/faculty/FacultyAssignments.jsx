@@ -14,8 +14,6 @@ import {
   UploadCloud,
   FileCheck,
   CheckCircle,
-  FileText,
-  User,
 } from 'lucide-react';
 
 export const FacultyAssignments = () => {

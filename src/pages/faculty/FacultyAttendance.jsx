@@ -181,8 +181,7 @@ export const FacultyAttendance = () => {
               value={filters.date}
               onChange={handleFilterChange}
               className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg p-2 font-medium"
-            >
-            </input>
+            />
           </div>
         </div>
 

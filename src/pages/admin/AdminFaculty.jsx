@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import adminService from '../../services/adminService';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
-import Badge from '../../components/common/Badge';
 import Modal from '../../components/common/Modal';
 import ConfirmDialog from '../../components/common/ConfirmDialog';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import EmptyState from '../../components/common/EmptyState';
 import { useAuth } from '../../context/AuthContext';
-import { Users, Search, Plus, Edit2, Trash2, Eye, Phone, Mail, BookOpen } from 'lucide-react';
+import { Search, Plus, Edit2, Trash2, Eye } from 'lucide-react';
 
 export const AdminFaculty = () => {
   const { addToast } = useAuth();
@@ -33,11 +32,7 @@ export const AdminFaculty = () => {
     courses: 'Software Engineering',
   });
 
-  useEffect(() => {
-    fetchFaculty();
-  }, [deptFilter]);
-
-  const fetchFaculty = async () => {
+  const fetchFaculty = useCallback(async () => {
     setLoading(true);
     try {
       const res = await adminService.getFaculty({ department: deptFilter });
@@ -47,7 +42,11 @@ export const AdminFaculty = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [deptFilter]);
+
+  useEffect(() => {
+    fetchFaculty();
+  }, [fetchFaculty]);
 
   const handleOpenAdd = () => {
     setIsEditing(false);

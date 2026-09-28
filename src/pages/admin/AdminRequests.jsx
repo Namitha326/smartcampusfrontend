@@ -6,7 +6,7 @@ import Badge from '../../components/common/Badge';
 import Modal from '../../components/common/Modal';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import { useAuth } from '../../context/AuthContext';
-import { CheckCircle2, XCircle, Eye, Calendar, User, FileText } from 'lucide-react';
+import { CheckCircle2, XCircle, Eye, Calendar } from 'lucide-react';
 
 export const AdminRequests = () => {
   const { addToast } = useAuth();

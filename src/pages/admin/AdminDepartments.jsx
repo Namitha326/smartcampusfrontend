@@ -7,7 +7,7 @@ import Modal from '../../components/common/Modal';
 import ConfirmDialog from '../../components/common/ConfirmDialog';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import { useAuth } from '../../context/AuthContext';
-import { Building2, Plus, Edit2, Trash2, Users, GraduationCap, DollarSign, Layers } from 'lucide-react';
+import { Plus, Edit2, Trash2, Users, GraduationCap, DollarSign, Layers } from 'lucide-react';
 
 export const AdminDepartments = () => {
   const { addToast } = useAuth();
@@ -29,11 +29,7 @@ export const AdminDepartments = () => {
     budget: '$200,000',
   });
 
-  useEffect(() => {
-    fetchDepts();
-  }, []);
-
-  const fetchDepts = async () => {
+  const fetchDepts = useCallback(async () => {
     setLoading(true);
     try {
       const res = await adminService.getDepartments();
@@ -43,7 +39,11 @@ export const AdminDepartments = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchDepts();
+  }, [fetchDepts]);
 
   const handleOpenAdd = () => {
     setIsEditing(false);

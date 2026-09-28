@@ -40,6 +40,8 @@ import AdminDepartments from '../pages/admin/AdminDepartments';
 import AdminRequests from '../pages/admin/AdminRequests';
 import AdminComplaints from '../pages/admin/AdminComplaints';
 import AdminAnalytics from '../pages/admin/AdminAnalytics';
+import AdminAnnouncements from '../pages/admin/AdminAnnouncements';
+import AdminEvents from '../pages/admin/AdminEvents';
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ allowedRoles, children }) => {
@@ -141,8 +143,8 @@ export const AppRoutes = () => {
         <Route path="departments" element={<AdminDepartments />} />
         <Route path="requests" element={<AdminRequests />} />
         <Route path="complaints" element={<AdminComplaints />} />
-        <Route path="announcements" element={<AnnouncementsPage />} />
-        <Route path="events" element={<EventsPage />} />
+        <Route path="announcements" element={<AdminAnnouncements />} />
+        <Route path="events" element={<AdminEvents />} />
         <Route path="analytics" element={<AdminAnalytics />} />
         <Route path="notifications" element={<NotificationsPage />} />
         <Route path="settings" element={<SettingsPage />} />

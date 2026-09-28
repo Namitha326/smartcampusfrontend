@@ -1,22 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import adminService from '../../services/adminService';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
 import Badge from '../../components/common/Badge';
 import Modal from '../../components/common/Modal';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
-import EmptyState from '../../components/common/EmptyState';
 import { useAuth } from '../../context/AuthContext';
-import {
-  MessageSquareWarning,
-  Search,
-  Filter,
-  CheckCircle,
-  Clock,
-  User,
-  Building,
-  Edit2,
-} from 'lucide-react';
+import { Search, Edit2 } from 'lucide-react';
 
 export const AdminComplaints = () => {
   const { addToast } = useAuth();
@@ -33,11 +23,7 @@ export const AdminComplaints = () => {
   const [assignedTo, setAssignedTo] = useState('');
   const [remarks, setRemarks] = useState('');
 
-  useEffect(() => {
-    fetchComplaints();
-  }, []);
-
-  const fetchComplaints = async () => {
+  const fetchComplaints = useCallback(async () => {
     setLoading(true);
     try {
       const res = await adminService.getComplaints();
@@ -47,7 +33,11 @@ export const AdminComplaints = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchComplaints();
+  }, [fetchComplaints]);
 
   const handleOpenUpdate = (complaint) => {
     setSelectedComplaint(complaint);

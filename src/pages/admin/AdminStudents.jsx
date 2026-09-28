@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import adminService from '../../services/adminService';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
@@ -8,17 +8,7 @@ import ConfirmDialog from '../../components/common/ConfirmDialog';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import EmptyState from '../../components/common/EmptyState';
 import { useAuth } from '../../context/AuthContext';
-import {
-  GraduationCap,
-  Search,
-  Plus,
-  Edit2,
-  Trash2,
-  Eye,
-  CheckCircle,
-  X,
-  Filter,
-} from 'lucide-react';
+import { Search, Plus, Edit2, Trash2, Eye } from 'lucide-react';
 
 export const AdminStudents = () => {
   const { addToast } = useAuth();
@@ -42,11 +32,7 @@ export const AdminStudents = () => {
     section: 'A',
   });
 
-  useEffect(() => {
-    fetchStudents();
-  }, [departmentFilter]);
-
-  const fetchStudents = async () => {
+  const fetchStudents = useCallback(async () => {
     setLoading(true);
     try {
       const res = await adminService.getStudents({
@@ -58,7 +44,11 @@ export const AdminStudents = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [departmentFilter]);
+
+  useEffect(() => {
+    fetchStudents();
+  }, [fetchStudents]);
 
   const handleOpenAdd = () => {
     setIsEditing(false);

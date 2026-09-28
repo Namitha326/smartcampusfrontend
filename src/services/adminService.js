@@ -8,6 +8,7 @@ import {
   MOCK_COMPLAINTS,
   MOCK_LEAVES,
   MOCK_ANNOUNCEMENTS,
+  MOCK_EVENTS,
 } from '../data/mockData';
 
 const mockDelay = (ms = 200) => new Promise(resolve => setTimeout(resolve, ms));
@@ -192,6 +193,60 @@ export const adminService = {
       remarks,
       message: `Request marked as ${action}.`,
     };
+  },
+
+  // Expected Future Backend Endpoint: GET /api/admin/announcements
+  getAnnouncements: async () => {
+    await mockDelay(200);
+    // return api.get('/admin/announcements');
+    return MOCK_ANNOUNCEMENTS;
+  },
+
+  // Expected Future Backend Endpoint: POST /api/admin/announcements
+  createAnnouncement: async (announcementData) => {
+    await mockDelay(300);
+    // return api.post('/admin/announcements', announcementData);
+    const newAnnouncement = {
+      id: `ANN-${Date.now()}`,
+      ...announcementData,
+      date: new Date().toISOString().split('T')[0],
+      read: false,
+    };
+    return { success: true, announcement: newAnnouncement, message: 'Campus announcement published successfully!' };
+  },
+
+  // Expected Future Backend Endpoint: DELETE /api/admin/announcements/:id
+  deleteAnnouncement: async (id) => {
+    await mockDelay(200);
+    // return api.delete(`/admin/announcements/${id}`);
+    return { success: true, id, message: 'Announcement archived successfully.' };
+  },
+
+  // Expected Future Backend Endpoint: GET /api/admin/events
+  getEvents: async () => {
+    await mockDelay(200);
+    // return api.get('/admin/events');
+    return MOCK_EVENTS;
+  },
+
+  // Expected Future Backend Endpoint: POST /api/admin/events
+  createEvent: async (eventData) => {
+    await mockDelay(300);
+    // return api.post('/admin/events', eventData);
+    const newEvent = {
+      id: `EVT-${Date.now()}`,
+      ...eventData,
+      registered: false,
+      registeredCount: 0,
+    };
+    return { success: true, event: newEvent, message: 'Campus event created successfully!' };
+  },
+
+  // Expected Future Backend Endpoint: DELETE /api/admin/events/:id
+  deleteEvent: async (id) => {
+    await mockDelay(200);
+    // return api.delete(`/admin/events/${id}`);
+    return { success: true, id, message: 'Campus event removed.' };
   }
 };
 

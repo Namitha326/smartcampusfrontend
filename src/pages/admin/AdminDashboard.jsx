@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import adminService from '../../services/adminService';
 import StatCard from '../../components/common/StatCard';
 import Card from '../../components/common/Card';
-import Badge from '../../components/common/Badge';
 import Button from '../../components/common/Button';
 import DeptDistributionChart from '../../components/charts/DeptDistributionChart';
 import AdminTrendChart from '../../components/charts/AdminTrendChart';
-import MarksChart from '../../components/charts/MarksChart';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import {
   GraduationCap,
@@ -18,9 +16,6 @@ import {
   AlertCircle,
   FileText,
   ShieldCheck,
-  TrendingUp,
-  ArrowRight,
-  BarChart3,
 } from 'lucide-react';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 
