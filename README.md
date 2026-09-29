@@ -111,12 +111,13 @@ frontend/
 │   │   ├── common/           # Button, Card, Badge, StatCard, Modal, ConfirmDialog, Toast, EmptyState, LoadingSpinner
 │   │   ├── layout/           # Navbar, Sidebar, DashboardLayout
 │   │   ├── charts/           # AttendanceChart, MarksChart, DeptDistributionChart, AdminTrendChart
-│   │   └── chatbot/          # CampusChatbot (Floating widget)
+│   │   ├── forms/            # FormInput, FormSelect, FormTextarea, FileUpload
+│   │   └── chatbot/          # CampusChatbot (Floating assistant widget)
 │   ├── pages/
 │   │   ├── auth/             # Login, Register, ForgotPassword
 │   │   ├── student/          # Dashboard, Profile, Attendance, Marks, Assignments, Events, Leave, Complaints, Lost&Found, Announcements, AI Career, Notifications, Settings
 │   │   ├── faculty/          # Dashboard, Profile, Attendance, Marks, Assignments, Requests, Announcements
-│   │   └── admin/            # Dashboard, Students, Faculty, Departments, Requests, Complaints, Analytics
+│   │   └── admin/            # Dashboard, Students, Faculty, Departments, Requests, Complaints, Announcements, Events, Analytics
 │   ├── services/
 │   │   ├── api.js            # Axios client with interceptors
 │   │   ├── authService.js    # Login, register, logout mock handlers
@@ -126,6 +127,8 @@ frontend/
 │   │   └── aiService.js      # AI Career Assistant & Chatbot endpoints
 │   ├── context/
 │   │   └── AuthContext.jsx   # Global Auth, User state, Notifications, and Toast dispatch
+│   ├── hooks/                # useDebounce, useLocalStorage, useMediaQuery
+│   ├── utils/                # formatters, validators, constants
 │   ├── routes/
 │   │   └── AppRoutes.jsx     # Role-based protected routes & 404
 │   ├── data/
@@ -162,6 +165,8 @@ All REST API calls are centralized in `src/services/`:
 | `facultyService.saveAttendance` | `/api/faculty/attendance` | `POST` |
 | `facultyService.saveMarks` | `/api/faculty/marks` | `POST` |
 | `facultyService.createAssignment` | `/api/faculty/assignments` | `POST` |
+| `adminService.createAnnouncement` | `/api/admin/announcements` | `POST` |
+| `adminService.createEvent` | `/api/admin/events` | `POST` |
 | `aiService.analyzeCareer` | `/api/ai/analyze` | `POST` |
 | `aiService.getRoadmap` | `/api/ai/roadmap` | `POST` |
 | `aiService.getProjects` | `/api/ai/projects` | `POST` |

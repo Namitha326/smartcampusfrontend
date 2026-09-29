@@ -5,12 +5,12 @@ import Button from '../../components/common/Button';
 import Badge from '../../components/common/Badge';
 import Modal from '../../components/common/Modal';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
+import FileUpload from '../../components/forms/FileUpload';
 import { useAuth } from '../../context/AuthContext';
 import {
   AlertCircle,
   Plus,
   Search,
-  UploadCloud,
   CheckCircle,
   Clock,
   MessageSquare,
@@ -258,30 +258,11 @@ export const ComplaintsPage = () => {
             />
           </div>
 
-          {/* Attachment upload mock */}
-          <div>
-            <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-              Supporting Evidence / Photo (Optional)
-            </label>
-            <div className="border border-dashed border-slate-300 rounded-xl p-4 text-center bg-slate-50/50 hover:bg-indigo-50/20 transition-all cursor-pointer">
-              <UploadCloud className="w-6 h-6 text-slate-400 mx-auto mb-1" />
-              <p className="text-xs text-slate-600">
-                {selectedFile ? selectedFile.name : 'Attach photo or diagnostic screenshot (JPG, PNG, PDF)'}
-              </p>
-              <input
-                type="file"
-                className="hidden"
-                id="complaint-file"
-                onChange={(e) => setSelectedFile(e.target.files[0])}
-              />
-              <label
-                htmlFor="complaint-file"
-                className="mt-2 inline-block px-2.5 py-1 text-xs bg-white border border-slate-200 rounded text-slate-700 cursor-pointer shadow-xs"
-              >
-                Choose File
-              </label>
-            </div>
-          </div>
+          <FileUpload
+            label="Supporting Evidence / Photo (Optional)"
+            helperText="Attach photo or diagnostic screenshot (JPG, PNG, PDF up to 10MB)"
+            onFileSelect={(file) => setSelectedFile(file)}
+          />
 
           <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
             <Button
